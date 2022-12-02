@@ -46,7 +46,6 @@ fs.readdir('./commands/', (err, files) => {
 
 client.on('ready', () => {
   console.log(`${client.user.tag} is ready to play music.`)
-  console.log(`${client.user.displayAvatarURL({ format: 'jpg' })}`)
 })
 
 client.on('messageCreate', async message => {
@@ -79,7 +78,7 @@ client.distube
   .on('playSong', (queue, song) =>
     queue.textChannel.send(
       `Playing \`${song.name}\` - \`${song.formattedDuration}\`\nRequested by: \`${
-        song.user
+        song.user.tag
       }\`\n${status(queue)}`
     )
   )
