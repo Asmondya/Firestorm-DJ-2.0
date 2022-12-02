@@ -58,13 +58,13 @@ client.on('messageCreate', async message => {
   const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command))
   if (!cmd) return
   if (cmd.inVoiceChannel && !message.member.voice.channel) {
-    return message.channel.send(`${client.emotes.error} | You must be in a voice channel!`)
+    return message.channel.send(`You must be in a voice channel!`)
   }
   try {
     cmd.run(client, message, args)
   } catch (e) {
     console.error(e)
-    message.channel.send(`${client.emotes.error} | Error: \`${e}\``)
+    message.channel.send(`Error: \`${e}\``)
   }
 })
 
@@ -78,30 +78,30 @@ const status = queue =>
 client.distube
   .on('playSong', (queue, song) =>
     queue.textChannel.send(
-      `${client.emotes.play} | Playing \`${song.name}\` - \`${song.formattedDuration}\`\nRequested by: \`${
+      `Playing \`${song.name}\` - \`${song.formattedDuration}\`\nRequested by: \`${
         song.user
       }\`\n${status(queue)}`
     )
   )
   .on('addSong', (queue, song) =>
     queue.textChannel.send(
-      `${client.emotes.success} | Added ${song.name} - \`${song.formattedDuration}\` to the queue by \`${song.user}\``
+      `Added ${song.name} - \`${song.formattedDuration}\` to the queue by \`${song.user}\``
     )
   )
   .on('addList', (queue, playlist) =>
     queue.textChannel.send(
-      `${client.emotes.success} | Added \`${playlist.name}\` playlist (${
+      `Added \`${playlist.name}\` playlist (${
         playlist.songs.length
       } songs) to queue\n${status(queue)}`
     )
   )
   .on('error', (channel, e) => {
-    if (channel) channel.send(`${client.emotes.error} | An error encountered: ${e.toString().slice(0, 1974)}`)
+    if (channel) channel.send(`An error encountered: ${e.toString().slice(0, 1974)}`)
     else console.error(e)
   })
   .on('empty', channel => channel.send('There is no one here. Im alone, again...'))
   .on('searchNoResult', (message, query) =>
-    message.channel.send(`${client.emotes.error} | No result found for \`${query}\`!`)
+    message.channel.send(`No result found for \`${query}\`!`)
   )
   .on('finish', queue => queue.textChannel.send("Finished !"))
 // // DisTubeOptions.searchSongs = true
