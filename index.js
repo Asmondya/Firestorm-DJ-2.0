@@ -10,12 +10,12 @@ const client = new Discord.Client({
 })
 const { ActivityType } = require('discord.js')
 const fs = require('fs')
-const config = require('./config.json')
+const dotenv = require("dotenv")
+dotenv.config()
 const { SpotifyPlugin } = require('@distube/spotify')
 const { SoundCloudPlugin } = require('@distube/soundcloud')
 const { YtDlpPlugin } = require('@distube/yt-dlp')
 
-client.config = require('./config.json')
 client.distube = new DisTube(client, {
   leaveOnStop: false,
   emitNewSongOnly: true,
@@ -31,7 +31,6 @@ client.distube = new DisTube(client, {
 })
 client.commands = new Discord.Collection()
 client.aliases = new Discord.Collection()
-client.emotes = config.emoji
 
 fs.readdir('./commands/', (err, files) => {
   if (err) return console.log('Could not find any commands!')
@@ -52,7 +51,7 @@ client.on('ready', () => {
 
 client.on('messageCreate', async message => {
   if (message.author.bot || !message.guild) return
-  const prefix = config.prefix
+  const prefix = "!"
   if (!message.content.startsWith(prefix)) return
   const args = message.content.slice(prefix.length).trim().split(/ +/g)
   const command = args.shift().toLowerCase()
@@ -132,4 +131,4 @@ client.on("ready", () => {
   })
 })
 
-client.login(config.token)
+client.login(process.env.TOKEN)
