@@ -103,22 +103,6 @@ client.distube
     message.channel.send(`No result found for \`${query}\`!`)
   )
   .on('finish', queue => queue.textChannel.send("Finished !"))
-// // DisTubeOptions.searchSongs = true
-// .on("searchResult", (message, result) => {
-//     let i = 0
-//     message.channel.send(
-//         `**Choose an option from below**\n${result
-//             .map(song => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``)
-//             .join("\n")}\n*Enter anything else or wait 60 seconds to cancel*`
-//     )
-// })
-// .on("searchCancel", message => message.channel.send(`${client.emotes.error} | Searching canceled`))
-// .on("searchInvalidAnswer", message =>
-//     message.channel.send(
-//         `${client.emotes.error} | Invalid answer! You have to enter the number in the range of the results`
-//     )
-// )
-// .on("searchDone", () => {})
 
 client.on("ready", () => {
   client.user.setPresence({
