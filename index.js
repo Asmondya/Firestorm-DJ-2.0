@@ -102,7 +102,7 @@ client.distube
   .on('searchNoResult', (message, query) =>
     message.channel.send(`No result found for \`${query}\`!`)
   )
-  .on('finish', queue => queue.textChannel.send("Finished !"))
+  .on('finish', queue => queue.textChannel.send("https://tenor.com/view/end-thats-all-folks-gif-10601784"))
 
 client.on("ready", () => {
   client.user.setPresence({
