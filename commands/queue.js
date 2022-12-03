@@ -3,7 +3,7 @@ module.exports = {
   aliases: ['q'],
   run: async (client, message) => {
     const queue = client.distube.getQueue(message)
-    if (!queue) return message.channel.send(`${client.emotes.error} | Bah elle est où ma queue ? :confused:`)
+    if (!queue) return message.channel.send(Bah elle est où ma queue ? :confused:`)
     const q = queue.songs
       .map((song, i) => `${i === 0 ? 'Playing:' : `${i}.`} ${song.name} - \`${song.formattedDuration}\``)
       .join('\n')
